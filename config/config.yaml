@@ -1,0 +1,31 @@
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_URL: https://github.com/entbappy/Branching-tutorial/raw/master/Chicken-fecal-images.zip
+  local_data_file: artifacts/data_ingestion/data.zip
+  unzip_dir: artifacts/data_ingestion
+  # s3:
+  #   bucket: your-bucket-name
+  #   prefix: data_ingestion
+  #   access_key_id: your-access-key-id
+  #   secret_access_key: your-secret-access-key
+  #   region_name: your-region-name
+  #   compression_type: gzip
+  #   s3_output_format: parquet
+  #   s3_output_compression_type: snappy
+  #   s3_output_location: s3://your-bucket-name/data_ingestion
+  # database:
+  #   host: your-host
+  #   port: your-port
+  #   database: your-database
+  #   user: your-user
+  #   password: your-password
+  #   table: your_table
+  #   schema: your_table_schema
+  #   batch_size: 10000
+  #   max_concurrent_reads: 5
+
+  
+
+  

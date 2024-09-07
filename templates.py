@@ -6,12 +6,12 @@ logging.basicConfig(level=logging.INFO, format = '[%(asctime)s]: %(message)s:')
 
 
 
-project_name = "cnnclassifier"
+project_name = "cnnClassifier"
 
 list_of_file = [
     ".github/workflows/.gitkeep",
     f"src/{project_name}/__init__.py",
-    f"src/{project_name}/component/__init__.py",
+    f"src/{project_name}/components/__init__.py",
     f"src/{project_name}/utils/__init__.py",
     f"src/{project_name}/config/__init__.py",
     f"src/{project_name}/config/configuration.py",
