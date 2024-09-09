@@ -1,9 +1,9 @@
 from cnnClassifier.constants import *
 from cnnClassifier.utils.common import read_yaml, create_directories
-from cnnClassifier.entity.config_entity import DataIngestionConfig
+from cnnClassifier.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig
 
 
-class ConfiguraitonManager:
+class ConfiguratonManager:
     def __init__(
             self, 
             config_filepath = CONFIG_FILE_PATH,
@@ -29,5 +29,26 @@ class ConfiguraitonManager:
         )
         # thats how we write custom return type of the function  using entity which can be esily use that in my component
         return data_ingestion_config
+    
+
+
+    def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
+        config = self.config.prepare_base_model
+
+        create_directories([config.root_dir])
+
+        prepare_base_model_config = PrepareBaseModelConfig(
+            root_dir=Path(config.root_dir),
+            base_model_path=Path(config.base_model_path),
+            updated_base_model_path=Path(config.updated_base_model_path),
+            params_image_size= self.params.IMAGE_SIZE, # remove the last character from the string
+            params_learning_rate= self.params.LEARNING_RATE,
+            params_include_top= self.params.INCLUDE_TOP,
+            params_weights= self.params.WEIGHT,
+            params_classes= self.params.CLASSES
+        )
+    
+        return prepare_base_model_config
+
 
 
