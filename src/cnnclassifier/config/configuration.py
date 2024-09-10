@@ -1,6 +1,9 @@
+import os
 from cnnClassifier.constants import *
 from cnnClassifier.utils.common import read_yaml, create_directories
-from cnnClassifier.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig
+from cnnClassifier.entity.config_entity import (DataIngestionConfig,
+                                                 PrepareBaseModelConfig,
+                                                   PrepareCallbacksConfig)
 
 
 class ConfiguratonManager:
@@ -13,6 +16,8 @@ class ConfiguratonManager:
         self.params = read_yaml(params_filepath)
 
         create_directories([self.config.artifacts_root])
+
+
         
 
     def get_data_ingestion_config(self) -> DataIngestionConfig: #define return type of this function
@@ -30,6 +35,7 @@ class ConfiguratonManager:
         # thats how we write custom return type of the function  using entity which can be esily use that in my component
         return data_ingestion_config
     
+
 
 
     def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
@@ -52,3 +58,18 @@ class ConfiguratonManager:
 
 
 
+
+    def get_prepare_callback_config(self) -> PrepareCallbacksConfig:
+        config = self.config.prepare_callbacks
+        model_ckpt_dir  =  os.path.dirname(config.checkpoint_model_filepath)
+        create_directories([
+            Path(model_ckpt_dir),
+            Path(config.tensorboard_root_log_dir)]
+        )
+
+        prepare_callback_config = PrepareCallbacksConfig(
+            root_dir = Path(config.root_dir),
+            tensorboard_root_log_dir = Path(config.tensorboard_root_log_dir),
+            checkpoint_model_filepath = Path(config.checkpoint_model_filepath)
+        )
+        return prepare_callback_config
