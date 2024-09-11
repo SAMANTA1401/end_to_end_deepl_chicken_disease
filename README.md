@@ -12,3 +12,7 @@
 8. update the main.py
 9. update the dvc.yaml
 
+<!-- dvc init -->
+<!-- dvc repro -->
+<!-- dvc dag -->
+
