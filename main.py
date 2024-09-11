@@ -2,6 +2,8 @@
 from cnnClassifier import logger # as cnnclassifier is setup as local package through setup.py
 from cnnClassifier.pipeline.stage_01_data_ingestion_pipeline import DataIngestionTrainingPipeline, STAGE_NAME_01
 from cnnClassifier.pipeline.stage02_prepare_base_model_pipeline import PrepareBaseModelPipeline , STAGE_NAME_02
+from cnnClassifier.pipeline.stage03_model_training_pipeline import ModelTrainingPipeline, STAGE_NAME_03
+
 
 try:
     # stage 01 data ingestion
@@ -15,6 +17,15 @@ try:
     obj2 = PrepareBaseModelPipeline()
     obj2.main()
     logger.info(f">>>> stage {STAGE_NAME_02} completed <<<<<<\n\nx=======x")
+
+    # stage 03 model training
+    logger.info(f">>>> stage {STAGE_NAME_03} started <<<<")
+    obj3 = ModelTrainingPipeline()
+    obj3.main()
+    logger.info(f">>>> stage {STAGE_NAME_03} completed <<<<<<\n\nx=======x")
+
+    #to run tensorboard
+    # tensorboard --logdir artifacts\prepare_callbacks\tensorboard_log_dir
 
 
 except Exception as e:
