@@ -45,3 +45,13 @@ class TrainingConfig:
     loss: str
     metrics: list
     learning_rate: float
+
+
+
+@dataclass(frozen=True)
+class EvalutationConfig:
+    path_of_model: Path
+    training_data: Path
+    all_params: dict
+    params_image_size: list
+    params_batch_size: int
